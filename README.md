@@ -1,18 +1,87 @@
-# React + Vite
+# 📄 EdiDox DOCX Editor App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple document editor built with **React** that allows users to upload `.docx` files, view and edit them in a rich text editor, and automatically save changes using **localStorage**.
 
-Currently, two official plugins are available:
+This project demonstrates document parsing, rich text editing, routing, and state management using modern React practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 📤 Document Upload
+- Upload **only `.docx` files**
+- File type validation
+- Extracts content from DOCX using **Mammoth**
+- Displays uploaded file name
+- Preserves basic spacing and headings
 
-Note: This will impact Vite dev & build performances.
+### ✍️ Rich Text Editor
+- Displays extracted content in a rich text editor (React Quill)
+- Supports:
+  - Bold
+  - Italic
+  - Underline
+  - Headings
+  - Ordered & bullet lists
+- Real-time content updates
 
-## Expanding the ESLint configuration
+### 💾 Save & Edit
+- Edit document content
+- **Auto-save** with debounce
+- Stores documents in **localStorage**
+- Displays last updated date & time
+- Toggle between **edit** and **read-only** modes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 📚 Document List (Sidebar)
+- Lists all uploaded documents
+- Shows document name and last updated time
+- Search documents by name
+- Delete documents
+
+### 🧭 Routing
+- `/` → Document list
+- `/upload` → Upload document
+- `/edit/:id` → Edit document
+- `/view/:id` → View document (read-only)
+
+---
+
+## 🛠 Tech Stack
+
+- **React** (Functional Components)
+- **React Router DOM**
+- **React Quill** (Rich Text Editor)
+- **Mammoth** (DOCX → HTML)
+- **LocalStorage** (Persistence)
+- **CSS** (Component-based styling)
+
+---
+
+## 📂 Project Structure
+
+src/
+│
+├── components/
+│ ├── Editor/
+│ ├── Header/
+│ └── Sidebar/
+│
+
+├── pages/
+│ ├── Upload/
+│ └── Edit/
+│
+
+├── utils/
+│ └── storage.js
+│
+
+├── App.jsx
+├── main.jsx
+└── index.css
+
+## ▶️ Getting Started
+
+```bash
+npm install
+npm run dev
