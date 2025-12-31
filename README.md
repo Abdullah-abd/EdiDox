@@ -66,17 +66,17 @@ src/
 │ ├── Editor/
 │ ├── Header/
 │ └── Sidebar/
-│
 
+│
 ├── pages/
 │ ├── Upload/
 │ └── Edit/
-│
 
+│
 ├── utils/
 │ └── storage.js
-│
 
+│
 ├── App.jsx
 ├── main.jsx
 └── index.css
