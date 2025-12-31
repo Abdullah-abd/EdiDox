@@ -67,3 +67,7 @@
 .edit-toggle-btn:hover {
   background-color: #1d4ed8;
 }
+
+.word-count {
+  margin: 5px;
+}

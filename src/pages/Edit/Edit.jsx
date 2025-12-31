@@ -87,6 +87,7 @@ function Edit() {
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const [wordCount, setWordCount] = useState(0);
 
   const [content, setContent] = useState("");
 
@@ -110,6 +111,19 @@ function Edit() {
       navigate(`/view/${id}`, { replace: true });
     }
   }, [id, isEditRoute, navigate]);
+  useEffect(() => {
+    if (!content) {
+      setWordCount(0);
+      return;
+    }
+
+    // strip HTML tags
+    const text = content.replace(/<[^>]*>/g, "").trim();
+
+    const words = text.split(/\s+/).filter(Boolean);
+
+    setWordCount(words.length);
+  }, [content]);
 
   // AUTOSAVE (only in edit mode)
   useEffect(() => {
@@ -142,7 +156,11 @@ function Edit() {
       <Sidebar />
 
       <div className="main-area">
-        <Header isEditing={isEditing} onToggleEdit={handleToggleEdit} />
+        <Header
+          isEditing={isEditing}
+          wordCount={wordCount}
+          onToggleEdit={handleToggleEdit}
+        />
 
         <Editor value={content} onChange={setContent} isEditing={isEditing} />
       </div>
