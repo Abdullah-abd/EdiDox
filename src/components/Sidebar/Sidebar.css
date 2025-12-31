@@ -1,0 +1,111 @@
+/* Sidebar container */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: #f9fafb;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Top section */
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* New document button */
+.new-doc-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.new-doc-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Search input */
+.search-input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+}
+
+/* Document list */
+.doc-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 8px;
+}
+
+/* Empty state */
+.empty-text {
+  font-size: 13px;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.doc-item:hover {
+  background-color: #e5e7eb;
+}
+
+/* Document title */
+.doc-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+}
+
+/* Document date */
+.doc-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+/* Document Items*/
+.doc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.doc-item:hover {
+  background: #f5f5f5;
+}
+
+.doc-info {
+  flex: 1;
+}
+
+.doc-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.doc-delete-btn:hover {
+  opacity: 1;
+  color: red;
+}
