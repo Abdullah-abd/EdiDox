@@ -6,11 +6,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Layout + Editor */}
-        <Route path="/" element={<Edit />}>
-          <Route path="edit/:id" element={null} />
-          <Route path="view/:id" element={null} />
-        </Route>
+        <Route path="/" element={<Edit />} />
+
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/view/:id" element={<Edit />} />
 
         <Route path="/upload" element={<Upload />} />
 
