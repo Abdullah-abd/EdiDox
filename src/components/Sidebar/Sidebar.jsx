@@ -45,7 +45,7 @@ function Sidebar() {
             <div key={doc.id} className="doc-item">
               <div
                 className="doc-info"
-                onClick={() => navigate(`/edit/${doc.id}`)}
+                onClick={() => navigate(`/view/${doc.id}`)}
               >
                 <p className="doc-title">{doc.title}</p>
                 <span className="doc-date">{doc.updatedAt}</span>
