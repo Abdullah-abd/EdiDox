@@ -4,6 +4,11 @@ A simple document editor built with **React** that allows users to upload `.docx
 
 This project demonstrates document parsing, rich text editing, routing, and state management using modern React practices.
 
+🌐 Live Demo
+
+👉 Deployed App:
+https://edi-dox-kgw3.vercel.app/
+
 ---
 
 ## 🚀 Features
