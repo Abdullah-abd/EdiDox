@@ -60,6 +60,7 @@ This project demonstrates document parsing, rich text editing, routing, and stat
 ## 📂 Project Structure
 
 src/
+
 │
 ├── components/
 │ ├── Editor/
