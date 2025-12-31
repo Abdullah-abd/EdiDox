@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Editor from "../../components/Editor/Editor";
 import Header from "../../components/Header/Header";
@@ -17,18 +12,14 @@ function Edit() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const [wordCount, setWordCount] = useState(0);
 
   const [content, setContent] = useState("");
+  const [wordCount, setWordCount] = useState(0);
 
-  // 🔥 ROUTE decides mode
-  const isEditRoute = location.pathname.startsWith("/edit");
-  const modeParam = searchParams.get("mode");
+  // 🔥 ROUTE = MODE
+  const isEditing = location.pathname.startsWith("/edit");
 
-  const isEditing = isEditRoute || modeParam === "edit";
-
-  // Load document
+  // 📄 Load document
   useEffect(() => {
     if (!id) return;
 
@@ -36,31 +27,20 @@ function Edit() {
     if (!doc) return;
 
     setContent(doc.content);
+  }, [id]);
 
-    // 🧠 safety: agar direct /edit pe aaye but readOnly doc hai
-    if (isEditRoute && doc.readOnly) {
-      navigate(`/view/${id}`, { replace: true });
-    }
-  }, [id, isEditRoute, navigate]);
+  // 🔢 Word count
   useEffect(() => {
-    if (!content) {
-      setWordCount(0);
-      return;
-    }
-
-    // strip HTML tags
     const text = content.replace(/<[^>]*>/g, "").trim();
-
-    const words = text.split(/\s+/).filter(Boolean);
-
-    setWordCount(words.length);
+    const words = text ? text.split(/\s+/).length : 0;
+    setWordCount(words);
   }, [content]);
 
-  // AUTOSAVE (only in edit mode)
+  // 💾 Autosave (only in edit mode)
   useEffect(() => {
     if (!id || !isEditing) return;
 
-    const timeout = setTimeout(() => {
+    const timer = setTimeout(() => {
       updateDocument(id, {
         content,
         updatedAt: new Date().toLocaleString(),
@@ -68,17 +48,17 @@ function Edit() {
       });
     }, 800);
 
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(timer);
   }, [content, id, isEditing]);
 
-  // Header toggle → ROUTE CHANGE
+  // 🔁 Header toggle → route change
   const handleToggleEdit = () => {
     if (!id) return;
 
     if (isEditing) {
       navigate(`/view/${id}`);
     } else {
-      navigate(`/edit/${id}?mode=edit`);
+      navigate(`/edit/${id}`);
     }
   };
 
