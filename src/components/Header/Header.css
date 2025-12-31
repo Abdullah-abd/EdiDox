@@ -1,0 +1,69 @@
+/* Header container */
+.editor-header {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+/* Left toolbar */
+/* .toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+} */
+.toolbar-left.ql-toolbar {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Dropdown (heading) */
+.toolbar-left select {
+  padding: 4px 6px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+/* Toolbar buttons */
+.toolbar-left button {
+  padding: 5px 8px;
+  font-size: 13px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toolbar-left button:hover {
+  background-color: #e5e7eb;
+}
+
+/* Right side */
+.toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Edit toggle button */
+.edit-toggle-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-toggle-btn:hover {
+  background-color: #1d4ed8;
+}
