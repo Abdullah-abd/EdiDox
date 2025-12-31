@@ -1,0 +1,46 @@
+/* Editor wrapper */
+.editor-container {
+  flex: 1;
+  height: calc(100vh - 52px);
+  background-color: #ffffff;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* React Quill editor box */
+.editor-container .ql-container {
+  border: none;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+}
+
+/* Editor content area */
+.editor-container .ql-editor {
+  min-height: 100%;
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* Placeholder styling */
+.ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+/* Headings */
+.ql-editor h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.ql-editor h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Lists */
+.ql-editor ul,
+.ql-editor ol {
+  padding-left: 24px;
+}
