@@ -19,7 +19,7 @@ function Edit() {
   // 🔥 ROUTE = MODE
   const isEditing = location.pathname.startsWith("/edit");
 
-  // 📄 Load document
+  // Load document
   useEffect(() => {
     if (!id) return;
 
@@ -29,14 +29,14 @@ function Edit() {
     setContent(doc.content);
   }, [id]);
 
-  // 🔢 Word count
+  // Word count
   useEffect(() => {
     const text = content.replace(/<[^>]*>/g, "").trim();
     const words = text ? text.split(/\s+/).length : 0;
     setWordCount(words);
   }, [content]);
 
-  // 💾 Autosave (only in edit mode)
+  //  Autosave (only in edit mode)
   useEffect(() => {
     if (!id || !isEditing) return;
 
@@ -51,7 +51,7 @@ function Edit() {
     return () => clearTimeout(timer);
   }, [content, id, isEditing]);
 
-  // 🔁 Header toggle → route change
+  // Header toggle → route change
   const handleToggleEdit = () => {
     if (!id) return;
 
@@ -60,8 +60,17 @@ function Edit() {
     } else {
       navigate(`/edit/${id}`);
     }
+  }; 
+  const onExport = () => {
+    const element = document.createElement("a");
+    const file = new Blob([content.replace(/<[^>]*>/g, "\n")], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = `document-${id}.txt`;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    URL.revokeObjectURL(element.href);
   };
-
   return (
     <div className="app-layout">
       <Sidebar />
@@ -71,6 +80,7 @@ function Edit() {
           isEditing={isEditing}
           wordCount={wordCount}
           onToggleEdit={handleToggleEdit}
+          onExport={onExport}
         />
 
         <Editor value={content} onChange={setContent} isEditing={isEditing} />

@@ -1,7 +1,7 @@
 import "react-quill/dist/quill.snow.css";
 import "./Header.css";
 
-function Header({ isEditing, wordCount, onToggleEdit }) {
+function Header({ isEditing, wordCount, onToggleEdit,onExport }) {
   return (
     <header className="editor-header">
       {/* Toolbar */}
@@ -28,6 +28,10 @@ function Header({ isEditing, wordCount, onToggleEdit }) {
       {/* Action */}
       <div className="toolbar-right">
         <span className="word-count">{wordCount} words</span>
+        <button className="export-btn" onClick={onExport} title="Export as TXT">
+          ⬇️
+          <span>Export</span>
+        </button>
         <button className="edit-toggle-btn" onClick={onToggleEdit}>
           {isEditing ? "Disable Edit" : "Enable Edit"}
         </button>
