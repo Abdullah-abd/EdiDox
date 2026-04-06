@@ -63,6 +63,17 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.export-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 10px;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
 .edit-toggle-btn:hover {
   background-color: #1d4ed8;
