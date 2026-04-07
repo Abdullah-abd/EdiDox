@@ -6,6 +6,7 @@
   padding: 16px;
   box-sizing: border-box;
   overflow-y: auto;
+  scrollbar-width: hidden !important;
 }
 
 /* React Quill editor box */
@@ -43,4 +44,13 @@
 .ql-editor ul,
 .ql-editor ol {
   padding-left: 24px;
+}
+
+.ql-align-center { text-align: center; }
+.ql-align-right { text-align: right; }
+.ql-align-justify { text-align: justify; }
+.ql-align-left { text-align: left; }
+::selection {
+  background: #cce2ff;
+  color: #0052cc;
 }

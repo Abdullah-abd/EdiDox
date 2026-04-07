@@ -60,7 +60,7 @@ function Edit() {
     } else {
       navigate(`/edit/${id}`);
     }
-  }; 
+  };
   const onExport = () => {
     const element = document.createElement("a");
     const file = new Blob([content.replace(/<[^>]*>/g, "\n")], { type: "text/plain" });
@@ -76,14 +76,19 @@ function Edit() {
       <Sidebar />
 
       <div className="main-area">
-        <Header
+        <div className="document-header">
+          <Header
           isEditing={isEditing}
           wordCount={wordCount}
           onToggleEdit={handleToggleEdit}
           onExport={onExport}
         />
+        </div>
+       
+        <div className="editor-container">
+          <Editor value={content} onChange={setContent} isEditing={isEditing} />
+        </div>
 
-        <Editor value={content} onChange={setContent} isEditing={isEditing} />
       </div>
     </div>
   );

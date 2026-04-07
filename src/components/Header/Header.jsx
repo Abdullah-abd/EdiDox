@@ -20,6 +20,9 @@ function Header({ isEditing, wordCount, onToggleEdit,onExport }) {
         <button className="ql-bold" disabled={!isEditing} />
         <button className="ql-italic" disabled={!isEditing} />
         <button className="ql-underline" disabled={!isEditing} />
+        <span class="ql-formats">
+          <select class="ql-align"></select> 
+        </span>
 
         <button className="ql-list" value="ordered" disabled={!isEditing} />
         <button className="ql-list" value="bullet" disabled={!isEditing} />
@@ -29,8 +32,8 @@ function Header({ isEditing, wordCount, onToggleEdit,onExport }) {
       <div className="toolbar-right">
         <span className="word-count">{wordCount} words</span>
         <button className="export-btn" onClick={onExport} title="Export as TXT">
-          ⬇️
           <span>Export</span>
+            ⬇️
         </button>
         <button className="edit-toggle-btn" onClick={onToggleEdit}>
           {isEditing ? "Disable Edit" : "Enable Edit"}
