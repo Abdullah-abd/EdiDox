@@ -3,9 +3,11 @@ import "react-quill/dist/quill.snow.css";
 import "./Editor.css";
 
 function Editor({ value, onChange, isEditing }) {
-  const formats = [
-  "header", "bold", "italic", "underline", "list", "bullet", 
-  "align" 
+
+const formats = [
+  "header", "font", "size", 
+  "bold", "italic", "underline", 
+  "list", "bullet", "align" 
 ];
   return (
     <div className="editor-container">

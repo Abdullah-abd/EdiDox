@@ -16,12 +16,15 @@ function Header({ isEditing, wordCount, onToggleEdit,onExport }) {
           <option value="2">H2</option>
           <option value="">Normal</option>
         </select>
-
+        <span className="ql-formats">
+            <select className="ql-font"></select>
+            <select className="ql-size"></select>
+        </span>
         <button className="ql-bold" disabled={!isEditing} />
         <button className="ql-italic" disabled={!isEditing} />
         <button className="ql-underline" disabled={!isEditing} />
-        <span class="ql-formats">
-          <select class="ql-align"></select> 
+        <span className="ql-formats">
+          <select className="ql-align"></select> 
         </span>
 
         <button className="ql-list" value="ordered" disabled={!isEditing} />

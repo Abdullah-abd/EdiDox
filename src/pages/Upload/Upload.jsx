@@ -19,17 +19,20 @@ function Upload() {
 
     // Extension validation
     const extension = file.name.split(".").pop().toLowerCase();
-    if (extension !== "docx") {
-      setError("Invalid file type. Please upload a .docx file");
+    if (extension !== "docx" && extension !== "pdf") {
+      setError("Please upload .docx or .pdf only");
       return;
     }
 
     // MIME type validation (extra safety)
-    const validMime =
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    const validMime = [
+      "application/pdf",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/msword",
+    ];
 
-    if (file.type && file.type !== validMime) {
-      setError("Invalid DOCX file");
+    if (file.type && !validMime.includes(file.type)) {
+      setError("Invalid file type");
       return;
     }
 
@@ -40,36 +43,48 @@ function Upload() {
     }
 
     try {
-      const arrayBuffer = await file.arrayBuffer();
+      const extension = file.name.split(".").pop().toLowerCase();
+      let finalContent = "";
 
-      // Spacing-friendly DOCX → HTML
-      const result = await mammoth.convertToHtml(
-        { arrayBuffer },
-        {
-          styleMap: [
-            "p[style-name='Normal'] => p:fresh",
-            "p[style-name='Heading 1'] => h1:fresh",
-            "p[style-name='Heading 2'] => h2:fresh",
-            "p => p:fresh",
-          ],
-          includeDefaultStyleMap: true,
-          preserveEmptyParagraphs: true,
-        }
-      );
+      if (extension === "docx") {
+        // Process DOCX to HTML for Quill Editor
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.convertToHtml(
+          { arrayBuffer },
+          {
+            styleMap: [
+              "p[style-name='Normal'] => p:fresh",
+              "p[style-name='Heading 1'] => h1:fresh",
+              "p[style-name='Heading 2'] => h2:fresh",
+              "p => p:fresh",
+            ],
+            includeDefaultStyleMap: true,
+            preserveEmptyParagraphs: true,
+          },
+        );
+        finalContent = result.value;
+      } else if (extension === "pdf") {
+        finalContent = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+      }
 
       const doc = {
         id: crypto.randomUUID(),
-        title: file.name.replace(".docx", ""),
+        title: file.name.replace(`.${extension}`, ""),
         updatedAt: new Date().toLocaleString(),
-        content: result.value,
+        content: finalContent,
         readOnly: true,
       };
 
-      saveDocument(doc);
+      // Persist document with extension type
+      saveDocument(doc, extension);
       navigate(`/edit/${doc.id}`);
     } catch (err) {
-      console.error(err);
-      setError("Failed to read DOCX file");
+      console.error("Upload Error:", err);
+      setError(err.message || "File processing failed");
     }
   };
 
@@ -77,13 +92,15 @@ function Upload() {
     <div className="upload-page">
       <div className="upload-card">
         <h2 className="upload-title">Upload Document</h2>
-        <p className="upload-subtitle">Upload a DOCX file to view or edit</p>
+        <p className="upload-subtitle">
+          Upload a DOCX or a pdf file to view or edit
+        </p>
 
         {/* Custom upload box */}
         <label className="upload-box">
-          <input type="file" accept=".docx" onChange={handleFile} hidden />
+          <input type="file" accept=".docx,.pdf" onChange={handleFile} hidden />
 
-          <span className="upload-btn">Choose DOCX File</span>
+          <span className="upload-btn">Choose File</span>
           <span className="upload-filename">
             {fileName || "No file chosen"}
           </span>

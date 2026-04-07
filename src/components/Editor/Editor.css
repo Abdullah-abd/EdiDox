@@ -2,11 +2,13 @@
 .editor-container {
   flex: 1;
   height: calc(100vh - 52px);
-  background-color: #ffffff;
-  padding: 16px;
-  box-sizing: border-box;
+  background-color: #f0f2f5; 
   overflow-y: auto;
-  scrollbar-width: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+  box-sizing: border-box;
 }
 
 /* React Quill editor box */
@@ -15,12 +17,23 @@
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   font-size: 15px;
 }
-
+.editor-container .ql-container .ql-snow {
+  width: 100%;
+  max-width: 800px;
+  min-height: 1000px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+}
 /* Editor content area */
 .editor-container .ql-editor {
-  min-height: 100%;
+  flex: 1;
+  padding: 60px 80px !important; 
+  overflow-y: hidden; 
   line-height: 1.6;
-  padding: 0;
+  height: auto;
 }
 
 /* Placeholder styling */

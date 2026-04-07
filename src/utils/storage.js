@@ -5,14 +5,24 @@ export function getDocuments() {
   return data ? JSON.parse(data) : [];
 }
 
-export function saveDocument(doc) {
+export function saveDocument(doc, extension = "txt") {
   const docs = getDocuments();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([doc, ...docs]));
+  const newDoc = { 
+    ...doc, 
+    extension, // 👈 Store extension here
+    updatedAt: new Date().toLocaleString() 
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([newDoc, ...docs]));
 }
 
 export function getDocumentById(id) {
   const docs = getDocuments();
   return docs.find((doc) => doc.id === id);
+}
+
+export function getDocumentExtension(id) {
+  const doc = getDocumentById(id);
+  return doc ? doc.extension : "txt";
 }
 
 export function deleteDocument(id) {
