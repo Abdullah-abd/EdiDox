@@ -16,7 +16,7 @@ function Edit() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [isOpen, setIsOpen] = useState(true);
   const [content, setContent] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const [extension, setExtension] = useState("txt");
@@ -111,43 +111,43 @@ useEffect(() => {
     URL.revokeObjectURL(element.href);
   };
   return (
-    <div className="app-layout">
-      <Sidebar />
-
-      <div className="main-area">
-        {extension !== "pdf" && (
-          <div className="document-header">
-            <Header
-              isEditing={isEditing}
-              wordCount={wordCount}
-              onToggleEdit={handleToggleEdit}
-              onExport={onExport}
+   <div className={`app-layout ${!isOpen ? "sidebar-closed" : ""}`}>
+    <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+    <div className="main-area">
+      {extension !== "pdf" && (
+        <div className="document-header">
+          <Header
+            isEditing={isEditing}
+            wordCount={wordCount}
+            onToggleEdit={handleToggleEdit}
+            onExport={onExport}
           />
-        </div>)}
-        
-        <div className="editor-container">
-          {extension === "pdf" ? (
-            <div className="pdf-viewer-container">
-              <embed
-                src={pdfUrl}
-                type="application/pdf"
-                width="100%"
-                height="100%"
-                style={{ border: "none" }}
-              />
-            </div>
-          ) : (
-            <div style={{ padding: "30px 100px", width: "100%" }}>
-              <Editor
-                value={content}
-                onChange={setContent}
-                isEditing={isEditing}
-              />
-            </div>
-          )}
         </div>
+      )}
+      
+      <div className="editor-container">
+        {extension === "pdf" ? (
+          <div className="pdf-viewer-container">
+            <embed
+              src={pdfUrl}
+              type="application/pdf"
+              width="100%"
+              height="100%"
+              style={{ border: "none" }}
+            />
+          </div>
+        ) : (
+          <div className="editor-wrapper">
+            <Editor
+              value={content}
+              onChange={setContent}
+              isEditing={isEditing}
+            />
+          </div>
+        )}
       </div>
     </div>
+  </div>
   );
 }
 

@@ -1,5 +1,6 @@
 /* Sidebar container */
-.sidebar {
+.sidebar-container {
+  position: relative;
   width: 280px;
   height: 100vh;
   background-color: #f9fafb;
@@ -10,6 +11,10 @@
   box-sizing: border-box;
 }
 
+.sidebar-container:has(.closed) {
+  width: 60px;
+  padding: 10px;
+}
 /* Top section */
 .sidebar-top {
   display: flex;
@@ -17,7 +22,39 @@
   gap: 12px;
   margin-bottom: 16px;
 }
+/* Circular Toggle Button Style */
+.toggle-container {
+ width: 100%;
+ height: fit-content;
+ display: flex;
+  justify-content: flex-end;
+}
+.sidebar-toggle-btn {
+  margin-top: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10%; /* Pure circular */
+  border: 1px solid #d1d5db;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
 
+.sidebar-toggle-btn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.sidebar-toggle-btn.closed {
+  position: fixed;
+  left: 15px;
+  top: 0px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 /* New document button */
 .new-doc-btn {
   background-color: #2563eb;
