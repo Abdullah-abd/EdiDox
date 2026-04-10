@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteDocument, getDocuments } from "../../utils/storage";
 import "./Sidebar.css";
-
-function Sidebar({ isOpen, setIsOpen }) {
+import { 
+  Plus, 
+  Pencil, 
+  Trash2, 
+  ChevronLeft, 
+  ChevronRight, 
+  Search 
+} from "lucide-react";
+function Sidebar({  setIsOpen }) {
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [search, setSearch] = useState("");
@@ -22,29 +29,11 @@ function Sidebar({ isOpen, setIsOpen }) {
 
   return (
     <div className="sidebar-container">
-      {!isOpen ? (
-        <div className="toggle-container">
-          <button
-            className="sidebar-toggle-btn closed"
-            onClick={() => setIsOpen(true)}
-          >
-            <strong>&gt;</strong>
-          </button>
-        </div>
-      ) : (
+      
         <aside className="sidebar">
           <div className="sidebar-top">
-            <div className="toggle-container">
-              <button
-                className="sidebar-toggle-btn"
-                onClick={() => setIsOpen(false)}
-              >
-                <strong>&lt;</strong>
-              </button>
-            </div>
-
             <button className="new-doc-btn" onClick={() => navigate("/upload")}>
-              ➕ New Document
+              <Plus size={20} /> New Document
             </button>
 
             <input
@@ -64,7 +53,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 <div key={doc.id} className="doc-item">
                   <div
                     className="doc-info"
-                    onClick={() => navigate(`/view/${doc.id}`)}
+                    onClick={() => {  navigate(`/edit/${doc.id}?mode=view`); setIsOpen(true);}}
                   >
                     <p className="doc-title">{doc.title}</p>
                     <span className="doc-date">{doc.updatedAt}</span>
@@ -76,10 +65,11 @@ function Sidebar({ isOpen, setIsOpen }) {
                       title="Edit document"
                       onClick={(e) => {
                         e.stopPropagation();
+                        setIsOpen(true);
                         navigate(`/edit/${doc.id}?mode=edit`);
                       }}
                     >
-                      ✏️
+                      <Pencil size={20} />
                     </button>
 
                     <button
@@ -90,7 +80,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                         handleDelete(doc.id);
                       }}
                     >
-                      🗑️
+                      <Trash2 size={20} />
                     </button>
                   </div>
                 </div>
@@ -98,7 +88,7 @@ function Sidebar({ isOpen, setIsOpen }) {
             )}
           </div>
         </aside>
-      )}
+      
     </div>
   );
 }

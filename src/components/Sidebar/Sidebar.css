@@ -1,62 +1,63 @@
 /* Sidebar container */
-.sidebar-container {
+/* .sidebar-container {
   position: relative;
   width: 280px;
   height: 100vh;
-  background-color: #f9fafb;
-  border-right: 1px solid #e5e7eb;
+  background-color: #587a93; 
+  border-right: 1px solid #4a667b;
   display: flex;
   flex-direction: column;
   padding: 16px;
   box-sizing: border-box;
-}
+  color: white;
+} */
 
-.sidebar-container:has(.closed) {
+/* .sidebar-container:has(.closed) {
   width: 60px;
   padding: 10px;
-}
+} */
 /* Top section */
-.sidebar-top {
+/* .sidebar-top {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 16px;
-}
+} */
 /* Circular Toggle Button Style */
-.toggle-container {
+/* .toggle-container {
  width: 100%;
  height: fit-content;
  display: flex;
   justify-content: flex-end;
-}
-.sidebar-toggle-btn {
-  margin-top: 20px;
+} */
+/* .sidebar-toggle-btn {
+  margin-top: 10px;
   width: 32px;
   height: 32px;
-  border-radius: 10%; /* Pure circular */
+  border-radius: 10%; 
   border: 1px solid #d1d5db;
   background-color: rgba(255, 255, 255, 0.8);
-  color: #6b7280;
+  color: #111827;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-}
+} */
 
-.sidebar-toggle-btn:hover {
+/* .sidebar-toggle-btn:hover {
   background-color: #f3f4f6;
   color: #111827;
-}
+} */
 
-.sidebar-toggle-btn.closed {
+/* .sidebar-toggle-btn.closed {
   position: fixed;
   left: 15px;
-  top: 0px;
+  top: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+} */
 /* New document button */
-.new-doc-btn {
+/* .new-doc-btn {
   background-color: #2563eb;
   color: white;
   border: none;
@@ -66,68 +67,68 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease;
-}
+} */
 
-.new-doc-btn:hover {
+/* .new-doc-btn:hover {
   background-color: #1d4ed8;
-}
+} */
 
 /* Search input */
-.search-input {
+/* .search-input {
   padding: 8px 10px;
   border-radius: 6px;
   border: 1px solid #d1d5db;
   font-size: 14px;
   outline: none;
-}
+} */
 
-.search-input:focus {
+/* .search-input:focus {
   border-color: #2563eb;
-}
+} */
 
 /* Document list */
-.doc-list {
+/* .doc-list {
   flex: 1;
   overflow-y: auto;
   padding-top: 8px;
-}
+} */
 
 /* Empty state */
-.empty-text {
+/* .empty-text {
   font-size: 13px;
-  color: #6b7280;
+  color: #fff;
   text-align: center;
   margin-top: 20px;
-}
+} */
 
-.doc-item:hover {
+/* .doc-item:hover {
   background-color: #e5e7eb;
-}
+} */
 
 /* Document title */
-.doc-title {
+/* .doc-title {
   font-size: 14px;
   font-weight: 500;
-  color: #111827;
+  color: #ffffff;
   margin: 0;
-}
+} */
 
 /* Document date */
-.doc-date {
+/* .doc-date {
   font-size: 12px;
-  color: #6b7280;
-}
+  color: #ffffff;
+} */
 /* Document Items*/
-.doc-item {
+/* .doc-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
   cursor: pointer;
-}
+} */
 
-.doc-item:hover {
-  background: #f5f5f5;
+/* .doc-item:hover {
+  background: #223556;
 }
 
 .doc-info {
@@ -145,4 +146,120 @@
 .doc-delete-btn:hover {
   opacity: 1;
   color: red;
+} */
+
+/* Sidebar container */
+.sidebar-container {
+  position: relative;
+  width: 300px;
+  height: 100vh;
+  background-color: #53728e;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Top search & button area */
+.sidebar-top {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.new-doc-btn {
+  background-color: white;
+  color: #223556;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Document List */
+.doc-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Individual Item - The Horizontal Layout */
+.doc-item {
+  display: flex;
+  justify-content: space-between; /* Pushes content to left and icons to right */
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.doc-item:hover {
+  background-color: #223556;
+}
+
+/* Text Container */
+.doc-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 70%; /* Prevents text from hitting the icons */
+}
+
+.doc-title {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... if name is too long */
+}
+
+.doc-date {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Actions Container (Edit/Delete) */
+.doc-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.delete-btn:hover {
+  color: #ff6b6b; /* Red tint for delete */
 }
